@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
+int counterGlobal = 0;
 
-//int counterGlobal = 0;
-
-CounterValue counterGlobal = CounterValue();
+/* CounterValue counterGlobal = CounterValue();
 
 // * Modifier la valeur de notre état.
 
@@ -14,4 +12,4 @@ class CounterValue extends ValueNotifier<int> {
   void increment() {
     value++;
   }
-}
+} */

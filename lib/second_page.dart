@@ -11,8 +11,8 @@ class SecondPage extends StatefulWidget {
 class _SecondPageState extends State<SecondPage> {
   void _incrementCounter() {
     setState(() {
-      counterGlobal.increment();
-      //counterGlobal++;
+      //counterGlobal.increment();
+      counterGlobal++;
     });
   }
 
@@ -41,7 +41,8 @@ class _SecondPageState extends State<SecondPage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '${counterGlobal.value}',
+              //'${counterGlobal.value}',
+              '$counterGlobal',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],

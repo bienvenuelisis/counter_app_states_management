@@ -10,29 +10,29 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = counterGlobal.value;
+  // int _counter = counterGlobal.value;
 
   @override
   void initState() {
     super.initState();
 
-    // * Add listener to counter global : triggered each time value changed.
-    counterGlobal.addListener(_changed);
+    /* // * Add listener to counter global : triggered each time value changed.
+    counterGlobal.addListener(_changed); */
   }
 
-  void _changed() {
+  /* void _changed() {
     debugPrint("Value changed _MyHomePageState : ${counterGlobal.value}");
     setState(() {
       _counter = counterGlobal.value;
     });
-  }
+  } */
 
-  @override
+  /* @override
   void dispose() {
     counterGlobal.removeListener(_changed);
     super.dispose();
   }
-
+ */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ), */
             Text(
-              '$_counter',
+              // '$_counter',
+              '$counterGlobal',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
