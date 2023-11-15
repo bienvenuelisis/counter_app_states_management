@@ -1,5 +1,5 @@
+import 'package:counter_app/notifiable_variables.dart';
 import 'package:counter_app/second_page.dart';
-import 'package:counter_app/variables.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -16,8 +16,15 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
 
-    /* // * Add listener to counter global : triggered each time value changed.
-    counterGlobal.addListener(_changed); */
+    // * Add listener to counter global : triggered each time value changed.
+    counterNotifiableGlobal.addListener(_listenToChange);
+  }
+
+  void _listenToChange() {
+    debugPrint(
+      "Value has changed _MyHomePageState : ${counterNotifiableGlobal.value}",
+    );
+    setState(() {});
   }
 
   /* void _changed() {
@@ -39,6 +46,14 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Counter Page 1'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              counterNotifiableGlobal.value--;
+            },
+            icon: const Icon(Icons.exposure_minus_1),
+          ),
+        ],
       ),
       body: Center(
         child: Column(
@@ -48,18 +63,9 @@ class _MyHomePageState extends State<MyHomePage> {
             const Text(
               'You have pushed the button this many times:',
             ),
-            /* ValueListenableBuilder(
-              valueListenable: counterGlobal,
-              builder: (context, value, child) {
-                return Text(
-                  '$value',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                );
-              },
-            ), */
+
             Text(
-              // '$_counter',
-              '$counterGlobal',
+              '${counterNotifiableGlobal.value}',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],

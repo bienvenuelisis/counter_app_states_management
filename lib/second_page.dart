@@ -1,4 +1,4 @@
-import 'package:counter_app/variables.dart';
+import 'package:counter_app/notifiable_variables.dart';
 import 'package:flutter/material.dart';
 
 class SecondPage extends StatefulWidget {
@@ -11,8 +11,7 @@ class SecondPage extends StatefulWidget {
 class _SecondPageState extends State<SecondPage> {
   void _incrementCounter() {
     setState(() {
-      //counterGlobal.increment();
-      counterGlobal++;
+      counterNotifiableGlobal.value++;
     });
   }
 
@@ -21,9 +20,13 @@ class _SecondPageState extends State<SecondPage> {
     super.initState();
 
     // * Add listener to counter global : triggered each time value changed.
-    /* counterGlobal.addListener(() {
-      debugPrint("Value changed _SecondPageState: ${counterGlobal.value}");
-    }); */
+    counterNotifiableGlobal.addListener(_listenToChange);
+  }
+
+  void _listenToChange() {
+    debugPrint(
+      "Value has changed _SecondPageState : ${counterNotifiableGlobal.value}",
+    );
   }
 
   @override
@@ -41,8 +44,7 @@ class _SecondPageState extends State<SecondPage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              //'${counterGlobal.value}',
-              '$counterGlobal',
+              '${counterNotifiableGlobal.value}',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
