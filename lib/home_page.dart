@@ -18,8 +18,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    InheritedCounterWidget? inherited =
-        context.dependOnInheritedWidgetOfExactType<InheritedCounterWidget>();
+    InheritedCounterWidget? inherited = InheritedCounterWidget.of(context);
 
     int counter;
 
@@ -36,7 +35,9 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: [
           IconButton(
             onPressed: () {
-              inherited?.counter.decrement();
+              setState(() {
+                inherited?.counter.decrement();
+              });
             },
             icon: const Icon(Icons.exposure_minus_1),
           ),

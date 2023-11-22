@@ -14,6 +14,10 @@ class InheritedCounterWidget extends InheritedWidget {
     debugPrint(oldWidget.toString());
     return false;
   }
+
+  static InheritedCounterWidget? of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<InheritedCounterWidget>();
+  }
 }
 
 class Counter {
