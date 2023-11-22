@@ -1,4 +1,3 @@
-import 'package:counter_app/variables.dart';
 import 'package:flutter/material.dart';
 
 class SecondPage extends StatefulWidget {
@@ -9,21 +8,9 @@ class SecondPage extends StatefulWidget {
 }
 
 class _SecondPageState extends State<SecondPage> {
-  void _incrementCounter() {
-    setState(() {
-      //counterGlobal.increment();
-      counterGlobal++;
-    });
-  }
-
   @override
   void initState() {
     super.initState();
-
-    // * Add listener to counter global : triggered each time value changed.
-    /* counterGlobal.addListener(() {
-      debugPrint("Value changed _SecondPageState: ${counterGlobal.value}");
-    }); */
   }
 
   @override
@@ -41,15 +28,14 @@ class _SecondPageState extends State<SecondPage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              //'${counterGlobal.value}',
-              '$counterGlobal',
+              'undefined',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {},
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.

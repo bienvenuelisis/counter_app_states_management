@@ -1,6 +1,7 @@
 import 'package:counter_app/second_page.dart';
-import 'package:counter_app/variables.dart';
 import 'package:flutter/material.dart';
+
+import 'inherited_counter_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -10,35 +11,36 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // int _counter = counterGlobal.value;
-
   @override
   void initState() {
     super.initState();
-
-    /* // * Add listener to counter global : triggered each time value changed.
-    counterGlobal.addListener(_changed); */
   }
 
-  /* void _changed() {
-    debugPrint("Value changed _MyHomePageState : ${counterGlobal.value}");
-    setState(() {
-      _counter = counterGlobal.value;
-    });
-  } */
-
-  /* @override
-  void dispose() {
-    counterGlobal.removeListener(_changed);
-    super.dispose();
-  }
- */
   @override
   Widget build(BuildContext context) {
+    InheritedCounterWidget? inherited =
+        context.dependOnInheritedWidgetOfExactType<InheritedCounterWidget>();
+
+    int counter;
+
+    if (inherited == null) {
+      counter = -1;
+    } else {
+      counter = inherited.counter.value;
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Counter Page 1'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              inherited?.counter.decrement();
+            },
+            icon: const Icon(Icons.exposure_minus_1),
+          ),
+        ],
       ),
       body: Center(
         child: Column(
@@ -48,18 +50,9 @@ class _MyHomePageState extends State<MyHomePage> {
             const Text(
               'You have pushed the button this many times:',
             ),
-            /* ValueListenableBuilder(
-              valueListenable: counterGlobal,
-              builder: (context, value, child) {
-                return Text(
-                  '$value',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                );
-              },
-            ), */
+
             Text(
-              // '$_counter',
-              '$counterGlobal',
+              counter.toString(),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
@@ -73,14 +66,10 @@ class _MyHomePageState extends State<MyHomePage> {
               return const SecondPage();
             }),
           );
-
-          /* Future.delayed(const Duration(seconds: 5), () {
-            setState(() {});
-          }); */
         },
         tooltip: 'Navigate to Page 2',
         child: const Icon(Icons.arrow_forward_ios),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
