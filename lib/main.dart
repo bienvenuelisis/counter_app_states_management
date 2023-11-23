@@ -1,12 +1,12 @@
+import 'package:counter_app/counter_provider.dart';
 import 'package:counter_app/home_page.dart';
 import 'package:flutter/material.dart';
-
-import 'inherited_counter_widget.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    InheritedCounterWidget(
-      counter: Counter(0),
+    ChangeNotifierProvider(
+      create: (_) => CounterProvider(),
       child: const CounterApp(),
     ),
   );

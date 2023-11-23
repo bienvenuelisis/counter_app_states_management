@@ -1,7 +1,7 @@
+import 'package:counter_app/counter_provider.dart';
 import 'package:counter_app/second_page.dart';
 import 'package:flutter/material.dart';
-
-import 'inherited_counter_widget.dart';
+import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -18,16 +18,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    InheritedCounterWidget? inherited = InheritedCounterWidget.of(context);
-
-    int counter;
-
-    if (inherited == null) {
-      counter = -1;
-    } else {
-      counter = inherited.counter.value;
-    }
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -35,9 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: [
           IconButton(
             onPressed: () {
-              setState(() {
-                inherited?.counter.decrement();
-              });
+              context.read<CounterProvider>().decrement();
             },
             icon: const Icon(Icons.exposure_minus_1),
           ),
@@ -53,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
 
             Text(
-              counter.toString(),
+              context.watch<CounterProvider>().value.toString(),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],

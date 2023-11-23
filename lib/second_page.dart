@@ -1,6 +1,6 @@
+import 'package:counter_app/counter_provider.dart';
 import 'package:flutter/material.dart';
-
-import 'inherited_counter_widget.dart';
+import 'package:provider/provider.dart';
 
 class SecondPage extends StatefulWidget {
   const SecondPage({super.key});
@@ -17,8 +17,6 @@ class _SecondPageState extends State<SecondPage> {
 
   @override
   Widget build(BuildContext context) {
-    InheritedCounterWidget? inherited = InheritedCounterWidget.of(context);
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -32,7 +30,7 @@ class _SecondPageState extends State<SecondPage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              inherited!.counter.value.toString(),
+              context.watch<CounterProvider>().value.toString().toString(),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
@@ -41,7 +39,7 @@ class _SecondPageState extends State<SecondPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            inherited.counter.increment();
+            context.read<CounterProvider>().increment();
           });
         },
         tooltip: 'Increment',
