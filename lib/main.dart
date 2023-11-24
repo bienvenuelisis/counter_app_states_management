@@ -1,8 +1,17 @@
 import 'package:counter_app/home_page.dart';
+import 'package:counter_app/notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const CounterApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CounterNotifier(0)),
+      ],
+      child: const CounterApp(),
+    ),
+  );
 }
 
 class CounterApp extends StatelessWidget {
