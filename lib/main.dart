@@ -1,8 +1,15 @@
 import 'package:counter_app/home_page.dart';
 import 'package:flutter/material.dart';
 
+import 'inherited_counter_widget.dart';
+
 void main() {
-  runApp(const CounterApp());
+  runApp(
+    InheritedCounterWidget(
+      counter: Counter(),
+      child: const CounterApp(),
+    ),
+  );
 }
 
 class CounterApp extends StatelessWidget {
