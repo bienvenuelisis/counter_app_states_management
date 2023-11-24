@@ -29,11 +29,9 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            // * Use ValueListenableBuilder
             const Text(
               'You have pushed the button this many times:',
             ),
-
             Text(
               inherited.counter.value.toString(),
               style: Theme.of(context).textTheme.headlineMedium,
